@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>私たちについて | 大和VISION</title>
+       <!-- Google Fonts -->
+       <link rel="preconnect" href="https://fonts.googleapis.com">
+       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+       <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+       
+       <!-- Font Awesome -->
+       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css">
+       
+       <!-- Custom CSS -->
+       <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+       <!-- バックアップとして相対パスも試してみる -->
+       <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+       <link rel="icon" href="assets/images/favicon.ico">
+   
+       <!-- Start of HubSpot Embed Code -->
+     <script type="text/javascript" id="hs-script-loader" async defer src="//js-na1.hs-scripts.com/44921258.js"></script>
+     <!-- End of HubSpot Embed Code -->
+    <style>
+        :root {
+            --primary-color: #C38708;
+            --secondary-color: #3A5A40;
+            --text-color: #141414;
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Noto Sans JP", sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* ヘッダースタイル */
+        .header {
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            background: var(--white);
+            padding: 8px 0;
+        }
+
+        .header-container {
+            max-width: 1170px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 40px;
+            padding: 0 20px;
+            height: 60px;
+        }
+
+        .logo {
+            flex-shrink: 0;
+        }
+
+        .logo-img {
+            height: 40px;
+            width: auto;
+        }
+
+        .nav-menu {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0px;
+            text-orientation: upright;
+            font-size: 14px;
+            padding: 4px;
+            white-space: nowrap;
+        }
+
+        .nav-menu i {
+            color: var(--primary-color);
+            transform: rotate(90deg);
+            margin-bottom: 8px;
+        }
+
+        .member-login {
+            margin-left: 30px;
+        }
+
+        .login-button {
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 18px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            writing-mode: vertical-rl;
+            text-orientation: upright;
+            font-weight: 700;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .login-sub {
+            font-size: 12px;
+            font-weight: 400;
+            margin-top: 4px;
+        }
+
+        /* モバイルメニュー */
+        .mobile-menu-button {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 80%;
+            height: 100vh;
+            background: var(--white);
+            padding: 20px;
+            z-index: 1001;
+        }
+
+        /* ページタイトルセクション */
+        .page-title-section {
+            background: var(--primary-color);
+            color: var(--white);
+            text-align: center;
+            padding: calc(80px + 2rem) 0 4rem;
+        }
+
+        .page-title-section h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .page-title-section h2 {
+            font-size: 1.5rem;
+            font-weight: normal;
+        }
+
+        /* コンテンツセクション */
+        .section {
+            padding: 4rem 0;
+        }
+
+        .section-container {
+            max-width: 1170px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .founder-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        .founder-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-color);
+        }
+
+        .founder-text {
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* 会社情報セクション */
+        .company-info {
+            background: #f8f8f8;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+        }
+
+        .info-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+        }
+
+        .info-card h4 {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-card p {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        /* フッター */
+        .footer {
+            background: #000;
+            color: var(--white);
+            padding: 80px 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 60px;
+            max-width: 1170px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-logo {
+            width: 225px;
+            margin-bottom: 30px;
+        }
+
+        .footer-info {
+            font-size: 0.9rem;
+            line-height: 1.8;
+        }
+
+        .footer-heading {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+        }
+
+        .details-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* レスポンシブ対応 */
+        @media (max-width: 768px) {
+            .nav-menu,
+            .member-login {
+                display: none;
+            }
+
+            .mobile-menu-button {
+                display: flex;
+            }
+
+            .page-title-section h1 {
+                font-size: 2rem;
+            }
+
+            .founder-section {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-container">
+            <!-- ロゴ -->
+            <div class="logo">
+                <a href="index.html">
+                    <img src="assets/images/logo.png" alt="大和VISION" class="logo-img">
+                </a>
+            </div>
+
+            <!-- PCメニュー -->
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="about.html"><i class="fas fa-building"></i>会社/採用情報</a></li>
+                    <li><a href="index.html#newsletter"><i class="fab fa-blogger"></i>ニュースレター</a></li>
+                    <li><a href="/categories"><i class="fas fa-envelope"></i>コンタクト</a></li>
+                    <li><a href="event.html"><i class="fas fa-calendar-alt"></i>イベント</a></li>
+                </ul>
+            </nav>
+
+
+            <!-- モバイルメニューボタン -->
+            <div class="mobile-menu-button">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+
+        <!-- モバイルメニュー -->
+        <nav class="mobile-menu">
+            <div class="mobile-menu-header">
+                <img src="assets/images/logo.png" alt="大和VISION" class="mobile-logo">
+                <button class="close-menu" aria-label="メニューを閉じる">×</button>
+            </div>
+            <ul class="mobile-menu-list">
+                <li>
+                    <a href="about.html">
+                        <i class="fas fa-building"></i>
+                        <span>会社/採用情報</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="index.html#newsletter">
+                        <i class="fab fa-blogger"></i>
+                        <span>ニュースレター</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/categories">
+                        <i class="fas fa-envelope"></i>
+                        <span>コンタクト</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="event.html">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>イベント</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- ページタイトル -->
+    <section class="page-title-section">
+        <div class="section-container">
+            <h1>私たちについて</h1>
+            <h2>会社の歩みと沿革</h2>
+        </div>
+    </section>
+
+    <!-- 創業者紹介 -->
+    <section class="section">
+        <div class="section-container">
+            <div class="founder-section">
+                <div class="founder-content">
+                    <h3>創業者-タツヤ(Tatsuya)のご紹介</h3>
+                    <div class="founder-text">
+                        創業者のタツヤ（白石達也）は1986年東京生まれ、早稲田大学、皇學館大学卒。神職資格保有しています。
+                        幼少期より吉田松陰に憧れ、教育への情熱で、Infotopグランプリの人気投票で4966票獲得し優勝し、
+                        その後日本人にとって重要な教育とは何かを見て回るために世界一周旅行をして、日本の文化伝統の
+                        素晴らしさに気がつき、皇學館大学の神道専攻科で神職資格をさずかります。つねにトップマーケターに
+                        師事することを続け、1000名のサブスクライバーを獲得。教育マーケティングとサービス構築法を提供しています。
+                    </div>
+                </div>
+                <div class="video-wrapper">
+                    <iframe src="https://player.vimeo.com/video/898707413" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 大和VISIONについて -->
+    <section class="section" style="background: #f8f8f8;">
+        <div class="section-container">
+            <div class="founder-section">
+                <div class="video-wrapper">
+                    <iframe src="https://player.vimeo.com/video/896380647" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <div class="founder-content">
+                    <h3>大和VISIONとは</h3>
+                    <div class="founder-text">
+                        平成元年、世界の時価総額ランキングトップ50位のなかでトップ36を独占していた日本の企業は
+                        令和5年にトップ50位が一つも残らなくなりました。
+
+                        明治維新から、高度経済成長へと目覚ましい経済躍進を遂げてきた日本の成長はなぜ、
+                        止まってしまったのでしょうか。
+
+                        それこそが教育にあると私たちは考えており、この教育を変える同志を募り日本の教育維新を
+                        私たちの手で起こすことが大和VISIONです。詳しくは動画をご視聴ください。
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 会社情報 -->
+    <section class="section company-info">
+        <div class="section-container">
+            <div class="info-grid">
+                <div class="info-card">
+                    <h4>会社情報</h4>
+                    <p>住所：〒401-0302<br>
+                    山梨県南都留郡富士河口湖町小立2253-1</p>
+                    <p>資本金：1000万円<br>
+                    営業時間：平日10:00~17:00<br>
+                    メール：support@yamatovision.jp<br>
+                    電話番号：03-6407-0222</p>
+                </div>
+                <div class="info-card">
+                    <h4>ビジョン & バリュー</h4>
+                    <p><strong>ビジョン：</strong><br>
+                    私たちの会社は日本の最高の未来を創る収益性の高い教育資産を作れるワールドクラスのプログラムを提供します。</p>
+                    <p><strong>バリュー：</strong><br>
+                    誠：言葉したことを成らせる<br>
+                    狂：狂信的なまでの品質追求<br>
+                    道：つねに改善を続け極める</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-info">
+                <a href="index.html"><img src="assets/images/logo-white.png" alt="大和VISION" class="footer-logo"></a>
+                <p>
+                    大和ViSiONは今の日本に役に立つ最新テクノロジーと日本が伝統的に大切にしてきた神道や儒教などの古典教育の両輪で日本をより豊かに発展させていくことを目的に活動をしています。創業者の白石達也は早稲田大学を卒業後に起業し、教育革命をむねに活動を続けて世界中の教育調査を行い、最終的に日本の教育が一番であることの確信を抱き帰国後皇學館大学の神道専攻科に入学し神職資格を取得。資産家との交流を通じてAIエージェントが今後大きな資産になることを確信して誰よりも早くマルチエージェントシステムをAI開発者として構築し、非技術者の方でも誰でもアプリ開発ができるブルーランプを産み出しました。現在上場企業からも問い合わせを多数頂いており、本来３日間かかる業務を１時間でエージェントに終わらせる生産性の向上を実現しています。
+                </p>
+            </div>
+            <div class="company-details">
+                <h3 class="footer-heading">COMPANY</h3>
+                <div class="details-list">
+                    <div class="detail-item">
+                        <h4>株式会社命</h4>
+                        <p>住所：〒401-0302　山梨県南都留郡富士河口湖町小立2253-1</p>
+                    </div>
+                    <div class="detail-item">
+                        <p>電話：03-6407-0222</p>
+                    </div>
+                    <div class="detail-item">
+                        <p>メール：support@yamatovision.jp</p>
+                    </div>
+                    <div class="detail-item">
+                        <p>資本金：1000万円</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- モバイルメニュー用JavaScript -->
+    <script>
+        // モバイルメニューの開閉制御
+        const menuButton = document.querySelector('.mobile-menu-button');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const closeMenu = document.querySelector('.close-menu');
+
+        menuButton?.addEventListener('click', () => {
+            mobileMenu.style.display = mobileMenu.style.display === 'block' ? 'none' : 'block';
+        });
+
+        closeMenu?.addEventListener('click', () => {
+            mobileMenu.style.display = 'none';
+        });
+
+        // ウィンドウリサイズ時の処理
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                mobileMenu.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

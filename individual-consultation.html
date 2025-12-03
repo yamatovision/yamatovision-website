@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>個別相談 | 大和ViSION</title>
+    <meta name="description" content="CF Optin 1">
+    <link rel="icon" type="image/x-icon" href="https://statics.myclickfunnels.com/image/1355541/file/2a9386636379cb8b4a481ba74b330afe.png">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+    <link rel="icon" href="assets/images/favicon.ico">
+
+    <style>
+    /* 個別相談ページのスタイル */
+.page-title-section {
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 60px 0;
+    text-align: center;
+}
+
+.page-title-section h1 {
+    font-size: 2.7em;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.page-title-section p {
+    font-size: 1.2em;
+    line-height: 1.6;
+}
+
+.consultation-video-section {
+    padding: 60px 0;
+    background: var(--white);
+}
+
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.booking-section {
+    padding: 60px 0;
+    background: var(--white);
+    text-align: center;
+}
+
+.booking-section h2 {
+    font-size: 2rem;
+    margin-bottom: 40px;
+    font-weight: 700;
+}
+
+.meetings-iframe-container {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    min-height: 700px;
+}
+
+@media (max-width: 768px) {
+    .page-title-section h1 {
+        font-size: 2rem;
+    }
+
+    .page-title-section p {
+        font-size: 1rem;
+        padding: 0 20px;
+    }
+
+    .consultation-video-section {
+        padding: 30px 0;
+    }
+
+    .booking-section {
+        padding: 30px 0;
+    }
+
+    .booking-section h2 {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+    }
+}
+/* メインコンテナ */
+.containerWrapper {
+    font-family: "Noto Sans JP", sans-serif;
+    color: rgb(47, 47, 47);
+    line-height: 1.2;
+    background: var(--white);
+}
+
+/* コンテンツセクション */
+.container.fullContainer {
+    font-family: "Noto Sans JP", sans-serif;
+    color: rgb(47, 47, 47);
+    border-width: 0;
+    padding: 20px 0 45px;
+    margin: 0;
+    background: var(--white);
+}
+
+.containerInnerV2 {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 10px;
+}
+
+/* ロゴ */
+.elImageWrapper {
+    padding: 10px 0;
+    text-align: center;
+}
+
+.elImage {
+    width: 200px;
+    height: 45px;
+}
+
+/* ヘッドライン */
+.elHeadline {
+    color: rgb(47, 47, 47);
+    font-family: "Noto Sans JP", sans-serif;
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 1.2;
+    text-align: center;
+    padding: 10px 0;
+    margin: 0;
+}
+
+/* ビデオセクション */
+.elVideoWrapper {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* 16:9のアスペクト比 */
+    margin: 20px 0;
+}
+
+.elVideo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.elVideo iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* 予約フォームセクション */
+.meetings-iframe-container {
+    margin: 20px 0;
+    min-height: 700px;
+    width: 100%;
+}
+
+/* フッターのナビゲーション */
+.elNavigator {
+    width: 100%;
+    padding: 10px 0;
+    text-align: center;
+}
+
+.elTypographyLink {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    margin: 0 15px;
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 768px) {
+    .containerInnerV2 {
+        padding: 0 15px;
+    }
+
+    .elHeadline {
+        font-size: 24px;
+        padding: 5px 0;
+    }
+
+    .meetings-iframe-container {
+        min-height: 500px;
+    }
+}
+
+/* デフォルトフォント設定の上書き */
+body {
+    font-family: "Noto Sans JP", sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* フッター */
+.footer {
+            background: #000;
+            color: #ffffff;
+            padding: 80px 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 60px;
+            max-width: 1170px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-logo {
+            width: 225px;
+            margin-bottom: 30px;
+        }
+
+        .footer-info {
+            font-size: 0.9rem;
+            line-height: 1.8;
+        }
+
+        .company-details {
+            padding-left: 40px;
+        }
+
+        .footer-heading {
+            color: #c38708;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+        }
+
+        .details-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .detail-item h4 {
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+/* モバイルメニュー */
+@media (max-width: 768px) {
+    .elNavigator .elTypographyLink {
+        display: block;
+        padding: 10px 0;
+    }
+}
+    </style>
+</head>
+<body>
+    <div class="containerWrapper">
+        <div class="elPageContentWrapper">
+            <div class="elPageContent">
+                <!-- メインコンテンツ -->
+                <div data-page-element="SectionContainer/V1" class="container fullContainer id-6Z-MY40T-1" data-paint-colors="lightest">
+                    <div class="containerInnerV2">
+                        <!-- ロゴセクション -->
+                        <div class="row id-6Z-MY40T-2">
+                            <div class="col-md-12 innerContent col_left">
+                                <div class="col-inner">
+                                    <div class="elImageWrapper de-image-block id-6Z-MY40T-4">
+                                        <img class="elImage" src="assets/images/logo.png" data-lazy-loading="true" width="200" height="45">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <!-- ヘッドラインセクション -->
+                        <div class="row id-6Z-MY40T-5">
+                            <div class="col-md-12 innerContent col_left">
+                                <div class="col-inner">
+                                    <div class="elHeadlineWrapper id-6Z-MY40T-7">
+                                        <h1 class="elHeadline">
+                                            <b>広告単価の高騰や、コンテンツサービスの競合の激化にお悩みでしたら、<br>下記のメッセージから解決策を得てください</b>
+                                        </h1>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <!-- ビデオと予約フォームセクション -->
+                        <div class="row id-6Z-MY40T-10">
+                            <div class="col-md-12 innerContent col_left">
+                                <div class="col-inner">
+                                    <!-- ビデオ埋め込み -->
+                                    <div class="elVideoWrapper de-video-block id-6Z-MY40T-12">
+                                        <div class="elVideo">
+                                            <iframe width="640" height="360" frameborder="0" allowfullscreen="true" wmode="opaque" 
+                                                    src="//player.vimeo.com/video/857795853?autoplay=0&title=0&byline=0&wmode=transparent&autopause=0"
+                                                    onload="this.iframeLoaded = true">
+                                            </iframe>
+                                        </div>
+                                    </div>
+    
+                                    <!-- セッションタイトル -->
+                                    <div class="elHeadlineWrapper id-6Z-MY40T-13">
+                                        <h1 class="elHeadline">
+                                            <b>セッションをご希望の場合</b>
+                                        </h1>
+                                    </div>
+    
+                                    <!-- HubSpot Meetings埋め込み -->
+                                    <div class="meetings-iframe-container" data-src="https://meetings.hubspot.com/kwsk0501/30min-2?embed=true"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+<!-- フッター -->
+<footer class="footer">
+    <div class="footer-grid">
+        <div class="footer-info">
+            <a href="index.html"><img src="assets/images/logo-white.png" alt="大和VISION" class="footer-logo"></a>
+            <p>大和ViSiONは今の日本に役に立つ最新テクノロジーと日本が伝統的に大切にしてきた神道や儒教などの古典教育の両輪で日本をより豊かに発展させていくことを目的に活動をしています。創業者の白石達也は早稲田大学を卒業後に起業し、教育革命をむねに活動を続けて世界中の教育調査を行い、最終的に日本の教育が一番であることの確信を抱き帰国後皇學館大学の神道専攻科に入学し神職資格を取得。資産家との交流を通じてAIエージェントが今後大きな資産になることを確信して誰よりも早くマルチエージェントシステムをAI開発者として構築し、非技術者の方でも誰でもアプリ開発ができるブルーランプを産み出しました。現在上場企業からも問い合わせを多数頂いており、本来３日間かかる業務を１時間でエージェントに終わらせる生産性の向上を実現しています。</p>
+        </div>
+
+        <div class="company-details">
+            <h3 class="footer-heading" style="margin-top: 0px;">COMPANY</h3>
+            <div class="details-list">
+                <div class="detail-item">
+                    <h4>株式会社命</h4>
+                    <p>住所：〒401-0302　山梨県南都留郡富士河口湖町小立2253-1</p>
+                </div>
+                <div class="detail-item">
+                    <p style="margin-top: 0px;margin-bottom: 0px;">電話：03-6407-0222</p>
+                </div>
+                <div class="detail-item">
+                    <p style="margin-top: 0px;margin-bottom: 0px;">メール：support@mikoto.co.jp</p>
+                </div>
+                <div class="detail-item">
+                    <p style="margin-top: 0px;margin-bottom: 0px;">資本金：1000万円</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+            </div>
+        </div>
+    </div>
+    
+    <!-- スクリプト -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js"></script>
+    </body>
+    </html>

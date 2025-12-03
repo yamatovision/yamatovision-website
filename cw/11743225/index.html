@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>フォーム自動送信ツール</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+        }
+
+        .input-section, .status-section {
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 6px;
+        }
+
+        .file-upload {
+            margin-bottom: 20px;
+        }
+
+        .file-upload label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: bold;
+        }
+
+        .template-text {
+            width: 100%;
+            height: 150px;
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .start-btn {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .pause-btn {
+            background: #FFC107;
+            color: #333;
+        }
+
+        .stop-btn {
+            background: #f44336;
+            color: white;
+        }
+
+        .status-section h2 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: #ddd;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .progress {
+            width: 60%;
+            height: 100%;
+            background: #4CAF50;
+            border-radius: 10px;
+            transition: width 0.3s ease;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .stat-item {
+            padding: 10px;
+            background: white;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .stat-item p {
+            font-size: 24px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .log-section {
+            margin-top: 20px;
+            grid-column: 1 / -1;
+        }
+
+        .log-area {
+            width: 100%;
+            height: 200px;
+            padding: 10px;
+            background: #f0f0f0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: monospace;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>フォーム自動送信ツール</h1>
+            <p>CSVファイルから企業情報を読み込み、問い合わせフォームに自動送信します</p>
+        </div>
+
+        <div class="main-content">
+            <div class="input-section">
+                <div class="file-upload">
+                    <label>CSVファイルをアップロード</label>
+                    <input type="file" accept=".csv">
+                </div>
+
+                <div class="template-section">
+                    <label>送信テンプレート</label>
+                    <textarea class="template-text" placeholder="ここに送信する定型文を入力してください。&#13;&#10;{企業名}のような変数も使用できます。"></textarea>
+                </div>
+
+                <div class="controls">
+                    <button class="start-btn">開始</button>
+                    <button class="pause-btn">一時停止</button>
+                    <button class="stop-btn">停止</button>
+                </div>
+            </div>
+
+            <div class="status-section">
+                <h2>実行状況</h2>
+                <div class="progress-bar">
+                    <div class="progress"></div>
+                </div>
+
+                <div class="stats">
+                    <div class="stat-item">
+                        <h3>処理済み</h3>
+                        <p>60/100</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>成功率</h3>
+                        <p>85%</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>残り時間</h3>
+                        <p>15:30</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>エラー数</h3>
+                        <p>5</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="log-section">
+                <h2>実行ログ</h2>
+                <div class="log-area">
+[INFO] 2025-02-05 10:30:15 - 処理を開始しました
+[SUCCESS] 2025-02-05 10:30:20 - 株式会社A: 送信成功
+[ERROR] 2025-02-05 10:30:25 - 株式会社B: CAPTCHAを検出
+[SUCCESS] 2025-02-05 10:30:30 - 株式会社C: 送信成功
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>お問い合わせ | 大和VISION</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+    <link rel="icon" href="../assets/images/favicon.ico">
+    <!-- Start of HubSpot Embed Code -->
+    <script type="text/javascript" id="hs-script-loader" async defer src="//js-na1.hs-scripts.com/44921258.js"></script>
+    <!-- End of HubSpot Embed Code -->
+    <style>
+        :root {
+            --primary-color: #C38708;
+            --secondary-color: #3A5A40;
+            --text-color: #141414;
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Noto Sans JP", sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ヘッダースタイル - 横書きに修正 */
+        .header {
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            background: var(--white);
+            padding: 8px 0;
+        }
+
+        .header-container {
+            max-width: 1170px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            height: 60px;
+        }
+
+        .logo-img {
+            height: 40px;
+            width: auto;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin-right: auto;
+            margin-left: 40px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+        }
+
+        .nav-menu i {
+            color: var(--primary-color);
+        }
+
+        .login-button {
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 12px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+            font-weight: 700;
+            font-size: 14px;
+            line-height: 1.4;
+            text-align: center;
+        }
+
+        .login-sub {
+            display: block;
+            font-size: 12px;
+            font-weight: 400;
+            margin-top: 4px;
+        }
+
+        /* お問い合わせセクション */
+        .contact-hero {
+            background: var(--primary-color);
+            color: var(--white);
+            padding: calc(60px + 4rem) 0 4rem;
+            text-align: center;
+        }
+
+        .contact-container {
+            max-width: 1170px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .contact-hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-hero h2 {
+            font-size: 1.1rem;
+            font-weight: normal;
+            line-height: 1.8;
+        }
+
+        .contact-section {
+            padding: 4rem 0;
+        }
+
+        .contact-methods {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 2rem;
+        }
+
+        .contact-card {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+
+        .contact-card h3 {
+            color: var(--text-color);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-button {
+            display: inline-block;
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 15px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 700;
+            margin-top: 1rem;
+            transition: background-color 0.3s;
+        }
+
+        .contact-button:hover {
+            background: #b77b07;
+        }
+
+        /* モーダルスタイル */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 2000;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: slideIn 0.3s ease;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+            padding: 0.5rem;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* フッター */
+        .footer {
+            background: #000;
+            color: var(--white);
+            padding: 80px 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 60px;
+            max-width: 1170px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-logo {
+            width: 225px;
+            margin-bottom: 30px;
+        }
+
+        .footer-info {
+            font-size: 0.9rem;
+            line-height: 1.8;
+        }
+
+        .company-details {
+            padding-left: 40px;
+        }
+
+        .footer-heading {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+        }
+
+        .details-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .detail-item h4 {
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        /* モバイル対応 */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .login-button {
+                display: none;
+            }
+
+            .mobile-menu-button {
+                display: block;
+            }
+
+            .contact-methods {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .company-details {
+                padding-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ヘッダー -->
+    <header class="header">
+        <div class="header-container">
+            <a href="../index.html" class="logo">
+                <img src="../assets/images/logo.png" alt="大和VISION" class="logo-img">
+            </a>
+            <nav class="nav-menu">
+                <a href="../about.html"><i class="fas fa-building"></i>会社/採用情報</a>
+                <a href="../index.html#newsletter"><i class="fab fa-blogger"></i>ニュースレター</a>
+                <a href="#"><i class="fas fa-envelope"></i>コンタクト</a>
+                <a href="../event.html"><i class="fas fa-calendar-alt"></i>イベント</a>
+            </nav>
+            <a href="https://members.yamatovision.jp/" class="login-button">
+                メンバーサイト
+                <span class="login-sub">ログイン</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- メインコンテンツ -->
+    <main>
+        <!-- お問い合わせヒーロー -->
+        <section class="contact-hero">
+            <div class="contact-container">
+                <h1>大和VISIONへのお問い合わせ</h1>
+                <h2>
+                    ともに教育維新を引き起こす同志として教育資産を構築し<br>
+                    1000名サブスクを達成させる活動に関心がある方は、<br>
+                    下記の方法で営業担当者までお問い合わせください。
+                </h2>
+            </div>
+        </section>
+
+        <!-- お問い合わせ方法 -->
+        <section class="contact-section">
+            <div class="contact-container">
+                <div class="contact-methods">
+                    <div class="contact-card">
+                        <h3>メールでのお問い合わせ</h3>
+                        <p>お問い合わせ内容をフォームからお送りください</p>
+                        <a href="#contact-form" class="contact-button">チケットを作成</a>
+                    </div>
+
+                    <div class="contact-card">
+                        <h3>チャットでのお問い合わせ</h3>
+                        <p>平日10:00~17:00<br>
+                        右下のボタンをクリックしてお問い合わせください</p>
+                    </div>
+
+                    <div class="contact-card">
+                        <h3>打ち合わせを予約する</h3>
+                        <p>ご都合の良い日時をお選びください</p>
+                        <a href="https://meetings.hubspot.com/lisence" class="contact-button" target="_blank">
+                            スケジュールを確認
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- お問い合わせフォームモーダル -->
+    <div id="contactModal" class="modal" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+        <div class="modal-content">
+            <button class="modal-close" aria-label="閉じる">×</button>
+            <h2 id="modalTitle" style="margin-bottom: 2rem;">お問い合わせフォーム</h2>
+            <div id="hubspotForm"></div>
+        </div>
+    </div>
+
+    <!-- フッター -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-info">
+                <a href="../index.html"><img src="../assets/images/logo-white.png" alt="大和VISION" class="footer-logo"></a>
+                <p>
+                    大和ViSiONは今の日本に役に立つ最新テクノロジーと日本が伝統的に大切にしてきた神道や儒教などの古典教育の両輪で日本をより豊かに発展させていくことを目的に活動をしています。創業者の白石達也は早稲田大学を卒業後に起業し、教育革命をむねに活動を続けて世界中の教育調査を行い、最終的に日本の教育が一番であることの確信を抱き帰国後皇學館大学の神道専攻科に入学し神職資格を取得。資産家との交流を通じてAIエージェントが今後大きな資産になることを確信して誰よりも早くマルチエージェントシステムをAI開発者として構築し、非技術者の方でも誰でもアプリ開発ができるブルーランプを産み出しました。現在上場企業からも問い合わせを多数頂いており、本来３日間かかる業務を１時間でエージェントに終わらせる生産性の向上を実現しています。
+                </p>
+            </div>
+            <div class="company-details">
+                <h3 class="footer-heading">COMPANY</h3>
+                <div class="details-list">
+                    <div class="detail-item">
+                        <h4>株式会社命</h4>
+                        <p>住所：〒401-0302　山梨県南都留郡富士河口湖町小立2253-1</p>
+                    </div>
+                    <div class="detail-item">
+                        <p>電話：03-6407-0222</p>
+                    </div>
+                    <div class="detail-item">
+                        <p>メール：support@yamatovision.jp</p>
+                    </div>
+                    <div class="detail-item">
+                        <p>資本金：1000万円</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- HubSpotフォーム用スクリプト -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const modal = document.getElementById('contactModal');
+        const closeBtn = modal.querySelector('.modal-close');
+        const contactButtons = document.querySelectorAll('a[href="#contact-form"]');
+        
+        // HubSpotフォームの読み込み
+        const loadHubspotForm = () => {
+            if (typeof hbspt === 'undefined') {
+                const script = document.createElement('script');
+                script.charset = 'utf-8';
+                script.type = 'text/javascript';
+                script.src = '//js.hsforms.net/forms/embed/v2.js';
+                script.onload = () => {
+                    hbspt.forms.create({
+                        region: "na1",
+                        portalId: "44921258",
+                        formId: "078f6900-cfb1-4395-9e1b-48de881666ea",
+                        target: "#hubspotForm"
+                    });
+                };
+                document.head.appendChild(script);
+            } else {
+                hbspt.forms.create({
+                    region: "na1",
+                    portalId: "44921258",
+                    formId: "078f6900-cfb1-4395-9e1b-48de881666ea",
+                    target: "#hubspotForm"
+                });
+            }
+        };
+
+        // モーダルを開く
+        const openModal = () => {
+            modal.classList.add('active');
+            modal.setAttribute('aria-hidden', 'false');
+            loadHubspotForm();
+            document.body.style.overflow = 'hidden';
+        };
+
+        // モーダルを閉じる
+        const closeModal = () => {
+            modal.classList.remove('active');
+            modal.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+        };
+
+        // イベントリスナーの設定
+        contactButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                openModal();
+            });
+        });
+
+        closeBtn.addEventListener('click', closeModal);
+
+        // モーダル外クリックで閉じる
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        // ESCキーで閉じる
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+                closeModal();
+            }
+        });
+    });
+</script>
+</body>
+</html>

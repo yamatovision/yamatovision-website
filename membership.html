@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Membership | 大和ViSION</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #000;
+            color: #fff;
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+
+        .logo-header {
+            text-align: center;
+            padding: 10px 0;
+        }
+        
+        .logo-header img {
+            width: 60px;
+        }
+
+        .main-title {
+            text-align: center;
+            font-size: 1.1rem;
+            margin: 5px 0;
+        }
+
+        .vision-title {
+            text-align: center;
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin: 5px 0 10px;
+        }
+
+        /* シンプルな動画コンテナ */
+        .video-wrapper {
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .content-box {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 30px;
+            border: 3px solid #C38708;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .text-content {
+            flex: 1;
+            padding-right: 40px;
+        }
+
+        .text-content h2 {
+            font-size: 1.5rem;
+            margin: 0 0 20px;
+            line-height: 1.8;
+            font-weight: 700;
+        }
+
+        .product-image {
+            width: 300px;
+            height: auto;
+        }
+
+        .countdown-text {
+            font-size: 0.9rem;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .countdown-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 5px;
+        }
+
+        .countdown-number {
+            background: none;
+            color: #fff;
+            font-size: 2.5rem;
+            font-weight: 700;
+            padding: 5px;
+            min-width: 60px;
+        }
+
+        .countdown-label {
+            font-size: 0.8rem;
+            color: #fff;
+            text-transform: uppercase;
+        }
+
+        .countdown-divider {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #fff;
+            padding: 0 5px;
+        }
+
+        .footer {
+            background: #000;
+            color: #fff;
+            padding: 60px 0;
+            margin-top: 30px; /* マージンを縮小 */
+        }
+
+        .footer-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .vision-title {
+                font-size: 2rem;
+            }
+
+            .content-box {
+                flex-direction: column;
+            }
+
+            .text-content {
+                padding-right: 0;
+                margin-bottom: 30px;
+            }
+
+            .product-image {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="logo-header">
+        <a href="index.html"><img src="assets/images/logo-mark.png" alt="大和VISION"></a>
+    </div>
+
+    <h1 class="main-title">生産性を20%どころではなく10倍20倍へと引き上げる</h1>
+    <h2 class="vision-title">AIエージェントの秘密</h2>
+
+    <div class="video-wrapper">
+        <div class="video-container">
+            <iframe src="https://player.vimeo.com/video/1142249633?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1"
+                    frameborder="0"
+                    allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    title="AIAGENT"
+                    allowfullscreen>
+            </iframe>
+        </div>
+    </div>
+
+
+    <!-- フッター -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-info">
+                <a href="index.html"><img src="assets/images/logo-white.png" alt="大和VISION" class="footer-logo"></a>
+                <p>大和ViSiONは今の日本に役に立つ最新テクノロジーと日本が伝統的に大切にしてきた神道や儒教などの古典教育の両輪で日本をより豊かに発展させていくことを目的に活動をしています。創業者の白石達也は早稲田大学を卒業後に起業し、教育革命をむねに活動を続けて世界中の教育調査を行い、最終的に日本の教育が一番であることの確信を抱き帰国後皇學館大学の神道専攻科に入学し神職資格を取得。資産家との交流を通じてAIエージェントが今後大きな資産になることを確信して誰よりも早くマルチエージェントシステムをAI開発者として構築し、非技術者の方でも誰でもアプリ開発ができるブルーランプを産み出しました。現在上場企業からも問い合わせを多数頂いており、本来３日間かかる業務を１時間でエージェントに終わらせる生産性の向上を実現しています。</p>
+            </div>
+
+            <div class="company-details">
+                <h3 class="footer-heading">COMPANY</h3>
+                <div class="details-list">
+                    <div class="detail-item">
+                        <h4>株式会社命</h4>
+                        <p>住所：〒401-0302　山梨県南都留郡富士河口湖町小立2253-1</p>
+                    </div>
+                    <div class="detail-item">
+                        <p>電話：03-6407-0222</p>
+                    </div>
+                    <div class="detail-item">
+                        <p>メール：support@yamatovision.jp</p>
+                    </div>
+                    <div class="detail-item">
+                        <p>資本金：1000万円</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+</body>
+</html>

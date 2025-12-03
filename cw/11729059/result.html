@@ -1,0 +1,66 @@
+<!-- result.html -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>マッチング結果 - 社内人材マッチングシステム</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="result-styles.css">
+</head>
+<body>
+    <header>
+        <h1>社内人材マッチングシステム</h1>
+    </header>
+    
+    <main>
+        <div class="results-container">
+            <div class="results-summary">
+                <h2>マッチング結果</h2>
+                <p>20件中、上位の候補者を表示しています</p>
+            </div>
+
+            <!-- 候補者カード -->
+            <div class="candidate-card">
+                <div class="match-score">
+                    <div class="score-circle">
+                        <span class="score">95%</span>
+                        <span class="label">マッチ度</span>
+                    </div>
+                </div>
+                <div class="candidate-info">
+                    <h3>候補者 ID: ENG001</h3>
+                    <div class="skills">
+                        <h4>スキル</h4>
+                        <div class="skills-chips">
+                            <span class="chip matched">Python</span>
+                            <span class="chip matched">React</span>
+                            <span class="chip">AWS</span>
+                        </div>
+                    </div>
+                    <div class="details-grid">
+                        <div class="detail-item">
+                            <span class="label">経験年数</span>
+                            <span class="value">5年</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="label">単金</span>
+                            <span class="value">70万円</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="label">稼働開始</span>
+                            <span class="value">即日可能</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="label">勤務地</span>
+                            <span class="value">リモート</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 他の候補者カードも同様に -->
+        </div>
+    </main>
+</body>
+</html>

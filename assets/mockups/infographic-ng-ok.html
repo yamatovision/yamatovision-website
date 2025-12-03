@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>データアーキテクチャ NG vs OK</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+            background: #1a1a2e;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            min-height: 480px;
+            display: flex;
+            position: relative;
+            overflow: hidden;
+            margin: 0 auto;
+        }
+
+        /* レスポンシブ対応 */
+        @media (max-width: 900px) {
+            .container {
+                flex-direction: column;
+                height: auto;
+            }
+
+            .ng-side, .ok-side {
+                width: 100%;
+                min-height: 400px;
+            }
+
+            .ng-side::after {
+                display: none;
+            }
+
+            .center-arrow {
+                position: relative;
+                left: auto;
+                top: auto;
+                transform: none;
+                margin: -25px auto;
+                z-index: 10;
+                font-size: 0;
+            }
+
+            .center-arrow::before {
+                content: '↓';
+                font-size: 24px;
+            }
+
+            .chaos-diagram {
+                min-height: 300px;
+            }
+
+            .simple-diagram {
+                min-height: 300px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .ng-side, .ok-side {
+                padding: 20px;
+            }
+
+            .title {
+                font-size: 18px;
+            }
+
+            .stat-box .value {
+                font-size: 16px;
+            }
+
+            .system-node {
+                font-size: 8px;
+                padding: 4px 6px;
+            }
+
+            .central-db {
+                width: 90px;
+                height: 90px;
+            }
+
+            .data-source .dot {
+                width: 36px;
+                height: 36px;
+                font-size: 14px;
+            }
+
+            .data-source .name {
+                font-size: 8px;
+            }
+        }
+
+        /* 左側 NG */
+        .ng-side {
+            flex: 1;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            padding: 32px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .ng-side::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent, #e74c3c, transparent);
+        }
+
+        /* 右側 OK */
+        .ok-side {
+            flex: 1;
+            background: linear-gradient(135deg, #0f3460 0%, #16213e 100%);
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ヘッダー */
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 8px;
+        }
+
+        .badge {
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .ng-side .badge {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+        }
+
+        .ok-side .badge {
+            background: linear-gradient(135deg, #00d9ff, #0099ff);
+            color: white;
+        }
+
+        .title {
+            font-size: 22px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .subtitle {
+            font-size: 12px;
+            color: rgba(255,255,255,0.5);
+            margin-bottom: 16px;
+        }
+
+        /* NG側のカオス図 */
+        .chaos-diagram {
+            flex: 1;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .system-node {
+            position: absolute;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 6px;
+            padding: 6px 10px;
+            font-size: 9px;
+            color: rgba(255,255,255,0.7);
+            white-space: nowrap;
+        }
+
+        .system-node.highlight {
+            background: rgba(231, 76, 60, 0.2);
+            border-color: rgba(231, 76, 60, 0.5);
+            color: #ff8a80;
+        }
+
+        .system-node .category {
+            font-size: 7px;
+            color: rgba(255,255,255,0.4);
+            display: block;
+            margin-top: 2px;
+        }
+
+        /* カオスの線 */
+        .chaos-lines {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.3;
+        }
+
+        .chaos-lines svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .chaos-lines line {
+            stroke: #e74c3c;
+            stroke-width: 1;
+            stroke-dasharray: 3,3;
+        }
+
+        /* OK側のシンプル図 */
+        .simple-diagram {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .central-db {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #00d9ff 0%, #0099ff 100%);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: 0 0 50px rgba(0, 217, 255, 0.4);
+            z-index: 2;
+        }
+
+        .central-db::before {
+            content: '';
+            position: absolute;
+            width: 160px;
+            height: 160px;
+            border: 2px dashed rgba(0, 217, 255, 0.3);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.2; }
+        }
+
+        .central-db .icon {
+            font-size: 32px;
+            margin-bottom: 4px;
+        }
+
+        .central-db .label {
+            font-size: 11px;
+            font-weight: 700;
+            color: white;
+            text-align: center;
+        }
+
+        /* 周りのデータソース */
+        .data-sources {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .data-source {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .data-source .dot {
+            width: 44px;
+            height: 44px;
+            background: rgba(0, 217, 255, 0.15);
+            border: 2px solid rgba(0, 217, 255, 0.4);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .data-source .name {
+            font-size: 9px;
+            color: rgba(255,255,255,0.7);
+            text-align: center;
+        }
+
+        .data-source:nth-child(1) { top: 5%; left: 50%; transform: translateX(-50%); }
+        .data-source:nth-child(2) { top: 22%; right: 8%; }
+        .data-source:nth-child(3) { bottom: 22%; right: 8%; }
+        .data-source:nth-child(4) { bottom: 5%; left: 50%; transform: translateX(-50%); }
+        .data-source:nth-child(5) { bottom: 22%; left: 8%; }
+        .data-source:nth-child(6) { top: 22%; left: 8%; }
+
+        /* AIエージェント */
+        .ai-agent {
+            position: absolute;
+            bottom: 15px;
+            right: 20px;
+            background: linear-gradient(135deg, #9b59b6, #8e44ad);
+            padding: 8px 14px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 10px;
+            color: white;
+            font-weight: 600;
+            box-shadow: 0 4px 20px rgba(155, 89, 182, 0.4);
+        }
+
+        .ai-agent .icon {
+            font-size: 14px;
+        }
+
+        /* 問題点リスト */
+        .problems {
+            margin-top: auto;
+            padding-top: 12px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .problem-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 5px 0;
+            font-size: 10px;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .problem-item .icon {
+            color: #e74c3c;
+            font-size: 12px;
+            width: 16px;
+        }
+
+        /* メリットリスト */
+        .benefits {
+            margin-top: auto;
+            padding-top: 12px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 5px 0;
+            font-size: 10px;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .benefit-item .icon {
+            color: #00d9ff;
+            font-size: 12px;
+            width: 16px;
+        }
+
+        /* 中央の矢印 */
+        .center-arrow {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+            box-shadow: 0 4px 30px rgba(46, 204, 113, 0.5);
+        }
+
+        /* 統計 */
+        .stat-row {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .stat-box {
+            background: rgba(0,0,0,0.3);
+            padding: 8px 12px;
+            border-radius: 6px;
+            text-align: center;
+            flex: 1;
+        }
+
+        .ng-side .stat-box {
+            border-left: 2px solid #e74c3c;
+        }
+
+        .ok-side .stat-box {
+            border-left: 2px solid #00d9ff;
+        }
+
+        .stat-box .value {
+            font-size: 20px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .stat-box .label {
+            font-size: 8px;
+            color: rgba(255,255,255,0.5);
+        }
+
+        /* フッター */
+        .footer {
+            position: absolute;
+            bottom: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 9px;
+            color: rgba(255,255,255,0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 左側 NG -->
+        <div class="ng-side">
+            <div class="header">
+                <span class="badge">NG</span>
+                <span class="title">散在アーキテクチャ</span>
+            </div>
+            <p class="subtitle">複数システムにデータが散らばり、ツギハギ状態</p>
+
+            <div class="stat-row">
+                <div class="stat-box">
+                    <div class="value">20+</div>
+                    <div class="label">散在システム</div>
+                </div>
+                <div class="stat-box">
+                    <div class="value">N×N</div>
+                    <div class="label">接続の複雑度</div>
+                </div>
+            </div>
+
+            <div class="chaos-diagram">
+                <svg class="chaos-lines" viewBox="0 0 500 280">
+                    <line x1="70" y1="40" x2="250" y2="100" />
+                    <line x1="430" y1="30" x2="260" y2="110" />
+                    <line x1="50" y1="140" x2="200" y2="120" />
+                    <line x1="450" y1="130" x2="300" y2="140" />
+                    <line x1="80" y1="240" x2="220" y2="160" />
+                    <line x1="420" y1="250" x2="280" y2="170" />
+                    <line x1="250" y1="30" x2="250" y2="100" />
+                    <line x1="250" y1="180" x2="250" y2="260" />
+                    <line x1="70" y1="40" x2="430" y2="30" />
+                    <line x1="50" y1="140" x2="80" y2="240" />
+                    <line x1="450" y1="130" x2="420" y2="250" />
+                    <line x1="180" y1="120" x2="320" y2="140" />
+                    <line x1="70" y1="40" x2="50" y2="140" />
+                    <line x1="430" y1="30" x2="450" y2="130" />
+                    <line x1="150" y1="200" x2="350" y2="210" />
+                </svg>
+
+                <!-- CRM/SFA系 -->
+                <div class="system-node" style="top: 15px; left: 30px;">
+                    Salesforce
+                    <span class="category">CRM</span>
+                </div>
+                <div class="system-node" style="top: 10px; right: 50px;">
+                    HubSpot
+                    <span class="category">MA</span>
+                </div>
+
+                <!-- コミュニケーション系 -->
+                <div class="system-node highlight" style="top: 60px; left: 160px;">
+                    Gmail
+                    <span class="category">メール</span>
+                </div>
+                <div class="system-node" style="top: 70px; right: 90px;">
+                    Slack
+                    <span class="category">チャット</span>
+                </div>
+
+                <!-- 決済/会計系 -->
+                <div class="system-node" style="top: 120px; left: 15px;">
+                    決済システムA
+                    <span class="category">決済</span>
+                </div>
+                <div class="system-node" style="top: 110px; right: 20px;">
+                    決済システムB
+                    <span class="category">決済</span>
+                </div>
+
+                <!-- 業務系 -->
+                <div class="system-node highlight" style="top: 160px; left: 80px;">
+                    CSV連携
+                    <span class="category">手作業</span>
+                </div>
+                <div class="system-node" style="top: 150px; right: 70px;">
+                    会計ソフト
+                    <span class="category">経理</span>
+                </div>
+
+                <!-- 人事/その他 -->
+                <div class="system-node" style="bottom: 50px; left: 40px;">
+                    人事システム
+                    <span class="category">HR</span>
+                </div>
+                <div class="system-node" style="bottom: 40px; right: 40px;">
+                    勤怠管理
+                    <span class="category">労務</span>
+                </div>
+                <div class="system-node highlight" style="bottom: 70px; left: 180px;">
+                    スプレッドシート
+                    <span class="category">手作業</span>
+                </div>
+                <div class="system-node" style="top: 40px; left: 280px;">
+                    ECサイト
+                    <span class="category">販売</span>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- 中央矢印 -->
+        <div class="center-arrow">→</div>
+
+        <!-- 右側 OK -->
+        <div class="ok-side">
+            <div class="header">
+                <span class="badge">OK</span>
+                <span class="title">統合アーキテクチャ</span>
+            </div>
+            <p class="subtitle">中央データベースへ一元化</p>
+
+            <div class="stat-row">
+                <div class="stat-box">
+                    <div class="value">1</div>
+                    <div class="label">中央データベース</div>
+                </div>
+                <div class="stat-box">
+                    <div class="value">N</div>
+                    <div class="label">シンプルな接続</div>
+                </div>
+            </div>
+
+            <div class="simple-diagram">
+                <div class="data-sources">
+                    <div class="data-source">
+                        <div class="dot">💳</div>
+                        <span class="name">決済データ</span>
+                    </div>
+                    <div class="data-source">
+                        <div class="dot">📊</div>
+                        <span class="name">財務データ</span>
+                    </div>
+                    <div class="data-source">
+                        <div class="dot">👥</div>
+                        <span class="name">顧客データ</span>
+                    </div>
+                    <div class="data-source">
+                        <div class="dot">📧</div>
+                        <span class="name">連絡データ</span>
+                    </div>
+                    <div class="data-source">
+                        <div class="dot">👔</div>
+                        <span class="name">人事データ</span>
+                    </div>
+                    <div class="data-source">
+                        <div class="dot">📈</div>
+                        <span class="name">分析データ</span>
+                    </div>
+                </div>
+
+                <div class="central-db">
+                    <span class="icon">🗄️</span>
+                    <span class="label">中央DB</span>
+                </div>
+
+                <div class="ai-agent">
+                    <span class="icon">🤖</span>
+                    <span>AIエージェントが全データにアクセス</span>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="footer">AIエージェント時代のデータアーキテクチャ設計</div>
+    </div>
+</body>
+</html>

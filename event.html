@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大和ViSIONイベントカレンダー</title>
+    <meta name="description" content="大和VISIONは日本の最高の未来をつくるための教育機関です。">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+    <link rel="icon" href="assets/images/favicon.ico">
+    <!-- Start of HubSpot Embed Code -->
+    <script type="text/javascript" id="hs-script-loader" async defer src="//js-na1.hs-scripts.com/44921258.js"></script>
+    <!-- End of HubSpot Embed Code -->
+    <style>
+    /* イベントページのスタイル */
+:root {
+    --primary-gold: #C38708;
+    --white: #FFFFFF;
+    --text-dark: #141414;
+    --border-light: #E5E5E5;
+}
+
+/* ヘッダースタイル調整 */
+.header {
+    background: var(--white);
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* タイトルセクション */
+.page-title-section {
+    background-color: var(--primary-gold);
+    color: var(--white);
+    padding: 60px 0;
+    text-align: center;
+}
+
+.page-title-section h1 {
+    font-size: 2.7rem;
+    margin-bottom: 20px;
+    font-weight: bold;
+    padding-top: 30px;
+}
+
+.page-title-section h2 {
+    font-size: 1.2rem;
+    font-weight: normal;
+}
+
+/* メインコンテンツ */
+.main-content {
+    background: var(--white);
+    padding: 40px 0;
+}
+
+.container {
+    max-width: 1170px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* カレンダー */
+.calendar-container {
+    margin-bottom: 40px;
+    background: var(--white);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+/* イベントリスト */
+.event-list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.event-item {
+    display: grid;
+    grid-template-columns: 200px 1fr 300px;
+    gap: 30px;
+    background: var(--white);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.event-image img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.event-info h3 {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: var(--text-dark);
+}
+
+.event-info p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 10px;
+    color: var(--text-dark);
+}
+
+.event-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.event-requirements {
+    margin-bottom: 20px;
+}
+
+.event-requirements p {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+}
+
+.event-requirements i {
+    color: var(--primary-gold);
+}
+
+.details-button {
+    display: inline-block;
+    background: var(--primary-gold);
+    color: var(--white);
+    padding: 15px 30px;
+    text-decoration: none;
+    border-radius: 4px;
+    text-align: center;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.details-button:hover {
+    background-color: #b77b07;
+}
+
+/* フッター */
+.footer {
+            background: #000;
+            color: var(--white);
+            padding: 80px 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 60px;
+            max-width: 1170px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-logo {
+            width: 225px;
+            margin-bottom: 30px;
+        }
+
+        .footer-info {
+            font-size: 0.9rem;
+            line-height: 1.8;
+        }
+
+        .footer-heading {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+        }
+
+        .details-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+/* レスポンシブデザイン */
+@media (max-width: 968px) {
+    .event-item {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .event-image img {
+        height: 200px;
+    }
+}
+
+@media (max-width: 768px) {
+    .page-title-section h1 {
+        font-size: 2rem;
+    }
+
+    .page-title-section {
+        padding: 40px 0;
+    }
+
+    .container {
+        padding: 0 15px;
+    }
+}
+</style>
+</head>
+<body>
+
+<!-- ヘッダー -->
+<header class="header">
+    <div class="nav-container">
+        <a href="index.html" class="logo">
+            <img src="assets/images/logo.png" alt="大和VISION" class="logo-img">
+        </a>
+        
+        <nav class="nav-menu">
+            <ul>
+                <a href="about.html"><i class="fas fa-building"></i>会社/採用情報</a>
+                <a href="index.html#newsletter"><i class="fab fa-blogger"></i>ニュースレター</a>
+                <a href="/categories"><i class="fas fa-envelope"></i>コンタクト</a>
+                <a href="event.html"><i class="fas fa-calendar-alt"></i>イベント</a>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<!-- タイトルセクション -->
+<section class="page-title-section">
+    <h1>イベント</h1>
+    <h2>大和VISIONのイベントをご紹介</h2>
+</section>
+
+<!-- メインコンテンツ -->
+<main class="main-content">
+    <div class="container">
+        <!-- カレンダー -->
+        <div class="calendar-container">
+            <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=Asia%2FTokyo&bgcolor=%23ffffff&showTitle=0&showPrint=0&showTz=0&showCalendars=0&src=bGlzZW5jZUBtaWtvdG8uY28uanA&color=%23E4C441" style="border:solid 1px #777" width="100%" height="605" frameborder="0" scrolling="no"></iframe>
+        </div>
+
+        <!-- イベントリスト -->
+        <div class="event-list">
+            <!-- イベント1 -->
+            <div class="event-item">
+                <div class="event-image">
+                    <img src="assets/images/event-dinner.png" alt="アイデンティティシフト食事会">
+                </div>
+                <div class="event-info">
+                    <h3>アイデンティティシフト食事会</h3>
+                    <p>白石がグループコンサルを行います。食事会で白石が皆様にグループコンサルティングを行います。</p>
+                    <p>最もアイデンティティシフトが起こりやすい定期懇親会。原則都内で開催いたします。</p>
+                </div>
+                <div class="event-details">
+                    <div class="event-requirements">
+                        <p><i class="fas fa-check"></i>奥伝から参加可能</p>
+                        <p><i class="fas fa-check"></i>毎月第4土曜日に開催</p>
+                    </div>
+                    <a href="https://cf.yamatovision.com/1b6czsmd" class="details-button">詳細はこちら →</a>
+                </div>
+            </div>
+
+            <!-- イベント2 -->
+            <div class="event-item">
+                <div class="event-image">
+                    <img src="assets/images/event-shrine.png" alt="神社参拝">
+                </div>
+                <div class="event-info">
+                    <h3>神社参拝</h3>
+                    <p>神職資格をもつTatsuyaと日本の心である神社に正式参拝いたします。</p>
+                    <p>本来の正式な参拝作法を知り参拝をすることで、神職から御祭神に祈りをお取次頂き、静寂な心とともに御魂の恩頼を得ていただくことができます。</p>
+                </div>
+                <div class="event-details">
+                    <div class="event-requirements">
+                        <p><i class="fas fa-check"></i>中伝から参加可能</p>
+                        <p><i class="fas fa-check"></i>7月27日(土)開催</p>
+                    </div>
+                    <a href="https://cf.yamatovision.com/yedix4ls" class="details-button">詳細はこちら →</a>
+                </div>
+            </div>
+
+            <!-- イベント3: 宮古島合宿 -->
+            <div class="event-item">
+                <div class="event-image">
+                    <img src="assets/images/event-miyako.png" alt="宮古島合宿">
+                </div>
+                <div class="event-info">
+                    <h3>宮古島合宿</h3>
+                    <p>多数の億万長者を輩出した毎年恒例の宮古島合宿。1億円構築可能な認定講師制度の仕組みをステップバイステップで公開します。</p>
+                    <p>Mr.Xから授かった絶対にWEBでは口外できない支配者層マインドセットの話もスイートルームでお伝えします。ぜひお早めに航空券をお手配ください。</p>
+                </div>
+                <div class="event-details">
+                    <div class="event-requirements">
+                        <p><i class="fas fa-check"></i>奥伝から参加可能</p>
+                        <p><i class="fas fa-check"></i>9月6日(金)〜8日(日)開催</p>
+                    </div>
+                    <a href="https://cf.yamatovision.com/n8ynz8gy" class="details-button">詳細はこちら →</a>
+                </div>
+            </div>
+
+            <!-- イベント4: VISON旅行 -->
+            <div class="event-item">
+                <div class="event-image">
+                    <img src="assets/images/event-vison.png" alt="VISON旅行">
+                </div>
+                <div class="event-info">
+                    <h3>VISON旅行</h3>
+                    <p>VISIONパートナーメンバーで伊勢神宮に正式参拝に参ります。正式参拝は、黒いスーツでないと入れませんので、ご留意ください。</p>
+                    <p>日本最大級のリゾート施設「VISON」に宿泊しますのでお早めにご予約をお願いいたします。</p>
+                </div>
+                <div class="event-details">
+                    <div class="event-requirements">
+                        <p><i class="fas fa-check"></i>皆伝から参加可能</p>
+                        <p><i class="fas fa-check"></i>12月25日(水)〜27日(金)開催</p>
+                    </div>
+                    <a href="https://cf.yamatovision.com/visonc9jculk" class="details-button">詳細はこちら →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- フッター -->
+<footer class="footer">
+    <div class="footer-grid">
+        <div class="footer-info">
+            <a href="index.html"><img src="assets/images/logo-white.png" alt="大和VISION" class="footer-logo"></a>
+            <p>大和ViSiONは今の日本に役に立つ最新テクノロジーと日本が伝統的に大切にしてきた神道や儒教などの古典教育の両輪で日本をより豊かに発展させていくことを目的に活動をしています。創業者の白石達也は早稲田大学を卒業後に起業し、教育革命をむねに活動を続けて世界中の教育調査を行い、最終的に日本の教育が一番であることの確信を抱き帰国後皇學館大学の神道専攻科に入学し神職資格を取得。資産家との交流を通じてAIエージェントが今後大きな資産になることを確信して誰よりも早くマルチエージェントシステムをAI開発者として構築し、非技術者の方でも誰でもアプリ開発ができるブルーランプを産み出しました。現在上場企業からも問い合わせを多数頂いており、本来３日間かかる業務を１時間でエージェントに終わらせる生産性の向上を実現しています。</p>
+        </div>
+
+        <div class="company-details">
+            <h3 class="footer-heading">COMPANY</h3>
+            <div class="details-list">
+                <div class="detail-item">
+                    <h4>株式会社命</h4>
+                    <p>住所：〒401-0302　山梨県南都留郡富士河口湖町小立2253-1</p>
+                </div>
+                <div class="detail-item">
+                    <p>電話：03-6407-0222</p>
+                </div>
+                <div class="detail-item">
+                    <p>メール：support@mikoto.co.jp</p>
+                </div>
+                <div class="detail-item">
+                    <p>資本金：1000万円</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>
