@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>サービス紹介 | 大和VISION</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link rel="icon" href="assets/images/favicon.ico">
+
+    <style>
+        :root {
+            --primary-color: #C38708;
+            --secondary-color: #3A5A40;
+            --text-color: #141414;
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Noto Sans JP", sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ヘッダースタイル */
+        .header {
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            background: var(--white);
+            padding: 8px 0;
+        }
+
+        .header-container {
+            max-width: 1170px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 40px;
+            padding: 0 20px;
+            height: 60px;
+        }
+
+        .logo { flex-shrink: 0; }
+        .logo-img { height: 40px; width: auto; }
+
+        /* ページタイトル */
+        .page-title-section {
+            background: linear-gradient(135deg, #1a1a2e 0%, #0a0a1a 100%);
+            color: var(--white);
+            text-align: center;
+            padding: calc(80px + 3rem) 0 4rem;
+        }
+
+        .page-title-section h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .page-title-section p {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.7);
+        }
+
+        /* セクション */
+        .section {
+            padding: 80px 0;
+        }
+
+        .container {
+            max-width: 1170px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 50px;
+            color: #1a1a2e;
+        }
+
+        /* サービス概要 */
+        .service-overview {
+            background: #f8f9fa;
+        }
+
+        .overview-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .overview-content p {
+            font-size: 1.1rem;
+            line-height: 2;
+            color: #333;
+        }
+
+        /* プラン比較 */
+        .plans-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .plan-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .plan-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .plan-header {
+            background: linear-gradient(135deg, #1a1a2e 0%, #2d2d4a 100%);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        .plan-header h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .plan-price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #C8A03C;
+        }
+
+        .plan-price span {
+            font-size: 1rem;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .plan-body {
+            padding: 30px;
+        }
+
+        .plan-features {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 30px 0;
+        }
+
+        .plan-features li {
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .plan-features li:last-child {
+            border-bottom: none;
+        }
+
+        .plan-features li::before {
+            content: "✓";
+            color: #38a169;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .plan-cta {
+            display: block;
+            background: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 15px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+
+        .plan-cta:hover {
+            background: #a67307;
+        }
+
+        /* 納品物セクション */
+        .deliverables {
+            background: #f8f9fa;
+        }
+
+        .deliverables-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .deliverable-card {
+            background: white;
+            padding: 30px 20px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+        }
+
+        .deliverable-card i {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .deliverable-card h4 {
+            font-size: 1rem;
+            color: #1a1a2e;
+        }
+
+        /* フローセクション */
+        .flow-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 900px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .flow-step {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 20px 15px;
+            text-align: center;
+            flex: 1;
+            min-width: 120px;
+        }
+
+        .flow-step .num {
+            background: var(--primary-color);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .flow-step .text {
+            font-size: 0.9rem;
+            color: #333;
+        }
+
+        .flow-arrow {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+        }
+
+        /* 保証セクション */
+        .guarantee {
+            background: linear-gradient(135deg, #1a1a2e 0%, #0a0a1a 100%);
+            color: white;
+        }
+
+        .guarantee-content {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .guarantee-content h2 {
+            color: #C8A03C;
+            margin-bottom: 30px;
+        }
+
+        .guarantee-content p {
+            font-size: 1.1rem;
+            line-height: 2;
+            color: rgba(255,255,255,0.8);
+        }
+
+        /* 会社情報 */
+        .company-info-table {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+        }
+
+        .company-info-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .company-info-table th,
+        .company-info-table td {
+            padding: 15px 20px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        .company-info-table th {
+            background: #f8f9fa;
+            width: 30%;
+            font-weight: 500;
+        }
+
+        /* CTA */
+        .cta-section {
+            background: var(--primary-color);
+            text-align: center;
+            padding: 60px 0;
+        }
+
+        .cta-section h2 {
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: var(--primary-color);
+            padding: 18px 50px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+        }
+
+        /* フッター */
+        .footer {
+            background: #000;
+            color: var(--white);
+            padding: 60px 0;
+        }
+
+        .footer-content {
+            max-width: 1170px;
+            margin: 0 auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        .footer-logo {
+            width: 180px;
+            margin-bottom: 20px;
+        }
+
+        .footer p {
+            color: rgba(255,255,255,0.6);
+            font-size: 0.9rem;
+        }
+
+        /* レスポンシブ */
+        @media (max-width: 768px) {
+            .plans-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .deliverables-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .flow-container {
+                flex-direction: column;
+            }
+
+            .flow-arrow {
+                transform: rotate(90deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ヘッダー -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="assets/images/logo.png" alt="大和VISION" class="logo-img">
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ページタイトル -->
+    <section class="page-title-section">
+        <div class="container">
+            <h1>AI業務システム構築支援サービス</h1>
+            <p>ノーコード開発プラットフォーム「BlueLamp」で<br>御社専用の業務システムを構築</p>
+        </div>
+    </section>
+
+    <!-- サービス概要 -->
+    <section class="section service-overview">
+        <div class="container">
+            <h2 class="section-title">サービス概要</h2>
+            <div class="overview-content">
+                <p>
+                    法人・個人事業主向けに、ノーコード開発プラットフォーム「BlueLamp」を活用した業務システム構築を支援するサービスです。<br><br>
+                    お客様ご自身が自社の業務システムを構築し、当社が技術サポート・完成保証を提供します。<br>
+                    非エンジニアでも4日間のワークショップで実際に動くシステムを完成させることができます。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- プラン比較 -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">料金プラン</h2>
+            <div class="plans-grid">
+                <!-- スタンダードプラン -->
+                <div class="plan-card">
+                    <div class="plan-header">
+                        <h3>スタンダードプラン</h3>
+                        <div class="plan-price">100万円<span>（税別）</span></div>
+                    </div>
+                    <div class="plan-body">
+                        <ul class="plan-features">
+                            <li>BlueLamp開発プラットフォーム（3アカウント/12ヶ月）</li>
+                            <li>システム構築テンプレート一式</li>
+                            <li>技術サポート（グループ形式）</li>
+                            <li>構築支援ワークショップ（4日間）</li>
+                            <li>完成保証（1システム）</li>
+                        </ul>
+                        <a href="contact-form.html?service=standard" class="plan-cta">無料相談する →</a>
+                    </div>
+                </div>
+
+                <!-- プレミアムプラン -->
+                <div class="plan-card">
+                    <div class="plan-header">
+                        <h3>プレミアムプラン</h3>
+                        <div class="plan-price">300万円<span>（税別）</span></div>
+                    </div>
+                    <div class="plan-body">
+                        <ul class="plan-features">
+                            <li>BlueLamp開発プラットフォーム（3アカウント/12ヶ月）</li>
+                            <li>システム構築テンプレート一式</li>
+                            <li>技術サポート（個別対応）</li>
+                            <li>構築支援ワークショップ（4日間）</li>
+                            <li>上級開発合宿</li>
+                            <li>マンツーマン技術コンサルティング</li>
+                            <li>完成保証（複数システム対応）</li>
+                            <li>パートナー開発者認定</li>
+                        </ul>
+                        <a href="contact-form.html?service=premium" class="plan-cta">無料相談する →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 納品物 -->
+    <section class="section deliverables">
+        <div class="container">
+            <h2 class="section-title">納品物</h2>
+            <div class="deliverables-grid">
+                <div class="deliverable-card">
+                    <i class="fas fa-laptop-code"></i>
+                    <h4>業務システム一式</h4>
+                </div>
+                <div class="deliverable-card">
+                    <i class="fas fa-cogs"></i>
+                    <h4>システム設定ファイル</h4>
+                </div>
+                <div class="deliverable-card">
+                    <i class="fas fa-book"></i>
+                    <h4>操作マニュアル</h4>
+                </div>
+                <div class="deliverable-card">
+                    <i class="fas fa-certificate"></i>
+                    <h4>開発者認定証</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 提供フロー -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">ご利用の流れ</h2>
+            <div class="flow-container">
+                <div class="flow-step">
+                    <div class="num">1</div>
+                    <div class="text">契約・決済</div>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">
+                    <div class="num">2</div>
+                    <div class="text">キックオフ</div>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">
+                    <div class="num">3</div>
+                    <div class="text">環境構築</div>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">
+                    <div class="num">4</div>
+                    <div class="text">ワークショップ</div>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">
+                    <div class="num">5</div>
+                    <div class="text">サポート期間</div>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">
+                    <div class="num">6</div>
+                    <div class="text">完成・検収</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 保証 -->
+    <section class="section guarantee">
+        <div class="container">
+            <div class="guarantee-content">
+                <h2>完成保証</h2>
+                <p>
+                    当サービスでは、お客様のシステムが完成するまでサポートを継続いたします。<br><br>
+                    サービス開始前のキャンセルは全額返金。<br>
+                    サービス開始後は進捗に応じた精算となります。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 会社情報 -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">運営会社</h2>
+            <div class="company-info-table">
+                <table>
+                    <tr>
+                        <th>会社名</th>
+                        <td>株式会社命</td>
+                    </tr>
+                    <tr>
+                        <th>所在地</th>
+                        <td>〒401-0302 山梨県南都留郡富士河口湖町小立2253-1</td>
+                    </tr>
+                    <tr>
+                        <th>資本金</th>
+                        <td>1,000万円</td>
+                    </tr>
+                    <tr>
+                        <th>メール</th>
+                        <td>support@yamatovision.jp</td>
+                    </tr>
+                    <tr>
+                        <th>役務提供期間</th>
+                        <td>契約後12ヶ月間</td>
+                    </tr>
+                    <tr>
+                        <th>決済方法</th>
+                        <td>一括払い／分割払い（最大10回）</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>まずは無料相談から</h2>
+            <a href="contact-form.html?service=consulting" class="cta-button">無料相談する →</a>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer class="footer">
+        <div class="footer-content">
+            <img src="assets/images/logo-white.png" alt="大和VISION" class="footer-logo">
+            <p>株式会社命 | 山梨県南都留郡富士河口湖町小立2253-1</p>
+        </div>
+    </footer>
+</body>
+</html>
